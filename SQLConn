@@ -1,0 +1,15 @@
+static String connectionString = null;
+connectionString = @"data source=ALTAMIRJ3\SQLEXPRESS;initial catalog=HotelPrueba;integrated security=True";
+using (SqlConnection con = new SqlConnection(connectionString))
+{
+	using (SqlCommand cmd = new SqlCommand("Insert_Comodity", con))
+	{
+		cmd.CommandType = CommandType.StoredProcedure;
+
+		cmd.Parameters.Add("@Name", SqlDbType.VarChar).Value = comodidad;
+
+		con.Open();
+		cmd.ExecuteNonQuery();
+		con.Close();
+	}
+}
